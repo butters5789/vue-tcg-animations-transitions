@@ -5,7 +5,15 @@
   </div>
 
   <div class="container">
-    <transition name="para">
+    <transition
+      name="para"
+      @before-enter="beforeEnterParaTransition"
+      @enter="enterParaTransition"
+      @after-enter="afterEnterParaTransition"
+      @before-leave="beforeLeaveParaTransition"
+      @leave="leaveParaTransition"
+      @after-leave="afterLeaveParaTransition"
+    >
       <p v-if="paraIsVisible">This is only sometimes visible...</p>
     </transition>
     <button @click="toggleParaVisibility">Toggle Paragraph</button>
@@ -39,6 +47,30 @@ export default {
     };
   },
   methods: {
+    beforeEnterParaTransition(el) {
+      console.log('Before enter para transition');
+      console.log(el);
+    },
+    enterParaTransition(el) {
+      console.log('Enter para transition');
+      console.log(el);
+    },
+    afterEnterParaTransition(el) {
+      console.log('After enter para transition');
+      console.log(el);
+    },
+    beforeLeaveParaTransition(el) {
+      console.log('Before leave para transition');
+      console.log(el);
+    },
+    leaveParaTransition(el) {
+      console.log('Leave para transition');
+      console.log(el);
+    },
+    afterLeaveParaTransition(el) {
+      console.log('After leave para transition');
+      console.log(el);
+    },
     startAnimateBlock() {
       this.animateBlock = true;
     },
@@ -113,7 +145,7 @@ button:active {
 }
 
 .para-enter-active {
-  transition: all 0.3s ease-out;
+  transition: all 1s ease-out;
 }
 
 .para-enter-to {
@@ -127,7 +159,7 @@ button:active {
 }
 
 .para-leave-active {
-  transition: all 0.3s ease-in;
+  transition: all 1s ease-in;
 }
 
 .para-leave-to {
