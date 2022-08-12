@@ -1,4 +1,10 @@
 <template>
+  <router-view v-slot="slotProps">
+    <transition name="fade-button" mode="out-in">
+      <component :is="slotProps.Component"></component>
+    </transition>
+  </router-view>
+
   <div class="container">
     <users-list></users-list>
   </div>
